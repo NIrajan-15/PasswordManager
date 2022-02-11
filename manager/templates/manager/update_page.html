@@ -1,0 +1,23 @@
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            FormPage
+        </title>
+    </head>
+    
+    <body>
+    <h1> Update-Account Form</h1>
+    <div class="center-column">
+        <form method="POST" action=''>
+            {% csrf_token %}
+            {{form}}
+            <input class="btn1" type="submit" value="Save">
+        </form>
+    </div>
+    </body>
+</html>
+
+    {% endblock %}
+</html>

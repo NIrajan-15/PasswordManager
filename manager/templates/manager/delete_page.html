@@ -1,0 +1,11 @@
+<h1> This is Delete Page </h1>
+
+<p> Are you sure you want to delete?{{account.name}} </p>
+
+<form action="{% url 'deleteAccount' account.id  %}" method="POST">
+				
+    {% csrf_token %}
+    <a class="btn btn-warning cancel-button" href="{% url 'account_info' account.id%}">Cancel</a>
+
+    <input class="btn btn-danger" type="submit" name="Confirm">
+</form>

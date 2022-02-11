@@ -1,0 +1,44 @@
+<h1> This is Individual account's Page</h1>
+
+{% block content %}
+
+
+<a href="{% url 'updateAccount' account.id %}"> Update Info </a><br>
+<a href="{% url 'deleteAccount' account.id %}"> Delete Account Info </a>
+<br>
+<br>
+<br>
+{{account.thumbnail}}<br>
+{{account.name}}<br>
+
+<div id="username">
+    {{account.username}}<br>
+</div>
+<button id="copy-username" onclick="CopyToClipboard('password')">Copy Username</button>
+
+<div id="password">
+    {{account.password}}<br>
+</div>
+{{account.password}}<br>
+<button id="copy-username" onclick="CopyToClipboard('username')">Copy Password</button>
+<br /><br />
+<script>
+    function CopyToClipboard(containerid) {
+        if (document.selection) {
+          var range = document.body.createTextRange();
+          range.moveToElementText(document.getElementById(containerid));
+          range.select().createTextRange();
+          document.execCommand("copy");
+        } else if (window.getSelection) {
+          var range = document.createRange();
+          range.selectNode(document.getElementById(containerid));
+          window.getSelection().addRange(range);
+          document.execCommand("copy");
+          alert("Copied to your Clipboard")
+        }
+      }
+</script>
+
+
+
+{% endblock %}

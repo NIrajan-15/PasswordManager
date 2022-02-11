@@ -1,0 +1,18 @@
+<h1> This is Front Page </h1>
+
+<span>
+    <a href="{% url 'addAccount' %}"> Add Account </a>
+</span>
+
+{% for account in accounts %}
+<div class="account-acrd">
+
+    
+    <br>
+    
+    <span> {{account.name}} </span>
+    <br>
+    <span> <a href="{% url 'account_info' account.id %}">{{account.name}}</a>   </span>
+
+</div>
+{% endfor %}
