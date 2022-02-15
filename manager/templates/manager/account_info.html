@@ -1,13 +1,26 @@
+{% extends 'manager/base.html' %}
+
 <h1> This is Individual account's Page</h1>
 
 {% block content %}
 
+<table align="right" border="3" style="text-align: center; border-spacing: 3px; border-collapse: separate;">
+  <tr>
+    <td style=" cellpadding: 2% ;">
+      <a href="{% url 'updateAccount' account.id %}"> Update </a><br>
+    </td>
+    <td>
+      &nbsp;
+    </td>
+    <td style=" color: whitesmoke">
+      <a href="{% url 'deleteAccount' account.id %}" style="background-color: gray; color:white;"> Delete </a> 
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<br>
 
-<a href="{% url 'updateAccount' account.id %}"> Update Info </a><br>
-<a href="{% url 'deleteAccount' account.id %}"> Delete Account Info </a>
-<br>
-<br>
-<br>
 {{account.thumbnail}}<br>
 {{account.name}}<br>
 
@@ -39,6 +52,47 @@
       }
 </script>
 
+<table align="center" border="3">
+  <tr>
+    <td>
+      Account name:
+    </td>
+    <td colspan="3">
+      {{account.name}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Username:
+    </td>
+    <td colspan="3">
+      {{account.username}}
+    </td>
+    <td colspan="2">
+      <button id="copy-username" onclick="CopyToClipboard('username')">Copy username</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Password:
+    </td>
+    <td colspan="3">
+      {{account.password}}
+    </td>
+    <td>
+      <button id="copy-username" onclick="CopyToClipboard('username')">Copy Password</button>
+    </td>
 
+  </tr>
+  <tr>
+    <td >
+      &nbsp;
+    </td>
+    <td colspan="2">
+      {{account.password}} &nbsp;
+    </td>
+    
+  </tr>
+</table>
 
 {% endblock %}
