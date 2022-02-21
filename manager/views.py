@@ -56,6 +56,11 @@ def UpdateAccount(request, key):
 
         if form.is_valid():
             form.save()
+
+            if AccountForm.has_changed():
+                for i in AccountForm.changed_data:
+                    UpdateHistory.objects.create(
+                        email=request.user.username, updated_column=i)
             return redirect('/')
     context={
         'form' : form,
