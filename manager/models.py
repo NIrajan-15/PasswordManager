@@ -53,7 +53,7 @@ class Account(models.Model):
     password = models.CharField(max_length=50)
     last_changed = models.TimeField(auto_now_add=True)
     type = models.CharField(max_length=20, null=True, choices=Account_choices)
-
+    note = models.CharField(max_length=500, null=True)
     def __str__(self):
         return self.name
 

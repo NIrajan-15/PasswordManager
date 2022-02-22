@@ -1,27 +1,21 @@
+{% extends 'manager/base.html' %}
+
 <h1> This is Individual account's Page</h1>
 
 {% block content %}
 
 
-<a href="{% url 'updateAccount' account.id %}"> Update Info </a><br>
-<a href="{% url 'deleteAccount' account.id %}"> Delete Account Info </a>
+      <span><a href="{% url 'updateAccount' account.id %}" class="btn btn-primary" style="position: absolute; right: 85px; top: 65px;"> Update </a></span>
+    
+      <span><a href="{% url 'deleteAccount' account.id %}" class="btn btn-primary" style="position: absolute; right: 5px; top: 65px;"> Delete </a> </span>
+   
 <br>
 <br>
 <br>
+
 {{account.thumbnail}}<br>
-{{account.name}}<br>
 
-<div id="username">
-    {{account.username}}<br>
-</div>
-<button id="copy-username" onclick="CopyToClipboard('password')">Copy Username</button>
 
-<div id="password">
-    {{account.password}}<br>
-</div>
-{{account.password}}<br>
-<button id="copy-username" onclick="CopyToClipboard('username')">Copy Password</button>
-<br /><br />
 <script>
     function CopyToClipboard(containerid) {
         if (document.selection) {
@@ -39,6 +33,13 @@
       }
 </script>
 
-
+<div class="card " style="width: 18rem;margin-left:30%">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><span>Account Name: </span>{{account.name}}</li>
+    <li class="list-group-item" ><span>Username: </span><span id="username">{{account.username}}</span><span style="position: absolute; right: 5px;"><button id="copy-username" onclick="CopyToClipboard('username')">Copy</button></span></li>
+    <li class="list-group-item"><span>Old Password: </span>{{account.password}}</li>
+    <li class="list-group-item" id="password"><span>New Password: </span><span id="password">{{account.password}}</span><span style="position: absolute; right: 5px;"><button id="copy-username" onclick="CopyToClipboard('password')">Copy</button></span></li>
+  </ul>
+</div>
 
 {% endblock %}

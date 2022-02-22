@@ -1,0 +1,26 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  {% for account in accounts %}
+    {% if account.type == "Kennedy Rice Mill" %}
+      <div class="card text-center" style="margin:10% 10% 0% 10%">
+        <img class="card-img-top" src="" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{account.name}}</h5>
+          <a href="{% url 'account_info' account.id %}" class="btn btn-primary" >{{account.name}}</a>
+        </div>
+      </div>
+  {% endif %}
+{% endfor %}
+</body>
+{% endblock %}
+</html>

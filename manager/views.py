@@ -12,7 +12,20 @@ def frontpage(request):
         }
         return render(request,'manager/frontpage.html',context)
     
-        
+def kennedypage(request):
+    accounts = Account.objects.all()
+    context = {
+        'accounts' : accounts,
+    }
+    return render(request,'manager/kennedy_account.html',context)
+
+def neighborspage(request):
+    accounts = Account.objects.all()
+    context = {
+        'accounts' : accounts,
+    }
+    return render(request,'manager/neignbors_account.html',context)
+
 
 def account_info(request, key):
     
