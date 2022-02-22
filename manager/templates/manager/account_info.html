@@ -4,37 +4,18 @@
 
 {% block content %}
 
-<table align="right" border="3" style="text-align: center; border-spacing: 3px; border-collapse: separate;">
-  <tr>
-    <td style=" cellpadding: 2% ;">
-      <a href="{% url 'updateAccount' account.id %}"> Update </a><br>
-    </td>
-    <td>
-      &nbsp;
-    </td>
-    <td style=" color: whitesmoke">
-      <a href="{% url 'deleteAccount' account.id %}" style="background-color: gray; color:white;"> Delete </a> 
-    </td>
-  </tr>
-</table>
+
+      <span><a href="{% url 'updateAccount' account.id %}" class="btn btn-primary" style="position: absolute; right: 85px; top: 65px;"> Update </a></span>
+    
+      <span><a href="{% url 'deleteAccount' account.id %}" class="btn btn-primary" style="position: absolute; right: 5px; top: 65px;"> Delete </a> </span>
+   
 <br>
 <br>
 <br>
 
 {{account.thumbnail}}<br>
-{{account.name}}<br>
 
-<div id="username">
-    {{account.username}}<br>
-</div>
-<button id="copy-username" onclick="CopyToClipboard('password')">Copy Username</button>
 
-<div id="password">
-    {{account.password}}<br>
-</div>
-{{account.password}}<br>
-<button id="copy-username" onclick="CopyToClipboard('username')">Copy Password</button>
-<br /><br />
 <script>
     function CopyToClipboard(containerid) {
         if (document.selection) {
@@ -52,47 +33,13 @@
       }
 </script>
 
-<table align="center" border="3">
-  <tr>
-    <td>
-      Account name:
-    </td>
-    <td colspan="3">
-      {{account.name}}
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Username:
-    </td>
-    <td colspan="3">
-      {{account.username}}
-    </td>
-    <td colspan="2">
-      <button id="copy-username" onclick="CopyToClipboard('username')">Copy username</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Password:
-    </td>
-    <td colspan="3">
-      {{account.password}}
-    </td>
-    <td>
-      <button id="copy-username" onclick="CopyToClipboard('username')">Copy Password</button>
-    </td>
-
-  </tr>
-  <tr>
-    <td >
-      &nbsp;
-    </td>
-    <td colspan="2">
-      {{account.password}} &nbsp;
-    </td>
-    
-  </tr>
-</table>
+<div class="card " style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><span>Account Name: </span>{{account.name}}</li>
+    <li class="list-group-item"><span>Username: </span>{{account.username}}<span style="position: absolute; right: 5px;"><button id="copy-username" onclick="CopyToClipboard('password')">Copy</button></span></li>
+    <li class="list-group-item"><span>Old Password: </span>{{account.password}}</li>
+    <li class="list-group-item"><span>New Password: </span>{{account.password}}<span style="position: absolute; right: 5px;"><button id="copy-username" onclick="CopyToClipboard('password')">Copy</button></span></li>
+  </ul>
+</div>
 
 {% endblock %}

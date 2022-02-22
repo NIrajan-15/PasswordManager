@@ -13,8 +13,7 @@ def frontpage(request):
             'accounts' : accounts,
         }
         return render(request,'manager/frontpage.html',context)
-    
-        
+
 
 def account_info(request, key):
     

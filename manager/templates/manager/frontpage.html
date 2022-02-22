@@ -9,25 +9,45 @@
 
 {% block content %}
 
-<h1> This is Front Page </h1>
 
-<div style="position: absolute; right: 10px;">
-    <a href="{% url 'addAccount' %}" > Add Account </a>
+<div style="position: absolute; right: 10px; top:60px;">
+    <a href="{% url 'addAccount' %}" class="btn btn-primary"> Add Account </a>
 </div>
-<br/><br/>
+<br/><br/><br/>
 
 
-<div class="card-deck" style="width: max-width; margin-left: auto; margin-right: auto;">
+<div class="row text-center" style="position: relative;">
+  <div class="col-sm-6">
+    <div class="card">
+      <img class="card-img-top" src="{% static 'images/img.jpeg' %}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Kennedy Rice Mill</h5>
+        <p class="card-text">Contains username and password details</p>
+        <a href="#" class="btn btn-primary">Open</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <img class="card-img-top" src="{% static 'images/img.jpeg' %}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Four Sister</h5>
+        <p class="card-text">Contans username and password details</p>
+        <a href="#" class="btn btn-primary">Open</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% for account in accounts %}
   <div class="card text-center">
-    <img class="card-img-top" src="..." alt="Card image cap">
+    <img class="card-img-top" src="" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{account.name}}</h5>
       <a href="{% url 'account_info' account.id %}" class="btn btn-primary" >{{account.name}}</a>
     </div>
   </div>
 {% endfor %}
-</div>
+
 
 {% endblock %}
