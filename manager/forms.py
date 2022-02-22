@@ -6,4 +6,4 @@ class AccountForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields= ['name', 'username', 'password']
+        fields= '__all__'

@@ -1,6 +1,4 @@
 from django.shortcuts import redirect, render
-from . import models
-from . import forms
 from .models import *
 from .forms import *
 
@@ -57,14 +55,15 @@ def UpdateAccount(request, key):
         if form.is_valid():
             form.save()
 
-            if AccountForm.has_changed():
-                for i in AccountForm.changed_data:
+            if form.has_changed():
+                for i in form.changed_data:
                     UpdateHistory.objects.create(
-                        email=request.user.username, updated_column=i)
+                        email=request.user.email, updated_column=i)
             return redirect('/')
     context={
         'form' : form,
-        'key' : key
+        
+        
     }
 
     return render(request,'manager/update_page.html',context)
