@@ -37,9 +37,11 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><span>Account Name: </span>{{account.name}}</li>
     <li class="list-group-item" ><span>Username: </span><span id="username">{{account.username}}</span><span style="position: absolute; right: 5px;"><button id="copy-username" onclick="CopyToClipboard('username')">Copy</button></span></li>
-    <li class="list-group-item"><span>Old Password: </span>{{account.password}}</li>
     <li class="list-group-item" id="password"><span>New Password: </span><span id="password">{{account.password}}</span><span style="position: absolute; right: 5px;"><button id="copy-username" onclick="CopyToClipboard('password')">Copy</button></span></li>
+    <li class="list-group-item"><span>Last Modified: </span>{{account.last_changed}}</li>
+    <li class="list-group-item"><span>Description: </span>{{account.description}}</li>
   </ul>
+
 </div>
 
 {% endblock %}

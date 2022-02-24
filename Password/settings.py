@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'manager',
     'crispy_forms',
+    'django_filters'
+    
     
 ]
 
@@ -74,6 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Password.wsgi.application'
+
 
 
 # Database

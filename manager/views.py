@@ -4,35 +4,45 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .filters import *
 
 # Create your views here.
 
 @login_required(login_url='login')
 def frontpage(request):
 
-    
-        accounts = Account.objects.all()
-        context = {
-            'accounts' : accounts,
-        }
-        return render(request,'manager/frontpage.html',context)
+    accounts = Account.objects.all()
+    account_filter = AccountFilter(request.GET, queryset=accounts)
+    accounts = account_filter.qs
+    context={
+        'accounts' : accounts,
+        'account_filter' : account_filter
+    }
+
+    return render(request,'manager/frontpage.html',context)
 
 
 @login_required(login_url='login')  
 def kennedypage(request):
     accounts = Account.objects.all()
-    context = {
+    account_filter = AccountFilter(request.GET, queryset=accounts)
+    accounts = account_filter.qs
+    context={
         'accounts' : accounts,
+        'account_filter' : account_filter
     }
     return render(request,'manager/kennedy_account.html',context)
 
 @login_required(login_url='login')
 def neighborspage(request):
     accounts = Account.objects.all()
-    context = {
+    account_filter = AccountFilter(request.GET, queryset=accounts)
+    accounts = account_filter.qs
+    context={
         'accounts' : accounts,
+        'account_filter' : account_filter
     }
-    return render(request,'manager/neignbors_account.html',context)
+    return render(request,'manager/neighbor_accounts.html',context)
 
 @login_required(login_url='login')
 def account_info(request, key):
@@ -106,20 +116,19 @@ def DeleteAccount(request, key):
 
 # login user
 def loginPage(request):
-    if  request.user.is_superuser:
-        return redirect('frontpage')
-    else:
-        if request.method == 'POST':
-            email = request.POST.get('email')
-            password = request.POST.get('password')
-            user = authenticate(request, email=email, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('frontpage')
+    
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('frontpage')
         else:
             messages.info(request, 'Username OR password is incorrect')
-        context = {}
-        return render(request, 'manager/loginpage.html', context)
+        
+    context = {}
+    return render(request, 'manager/loginpage.html', context)
 
 def logoutUser(request):
     logout(request)
