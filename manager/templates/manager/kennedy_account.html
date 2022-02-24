@@ -1,4 +1,4 @@
-{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %} {% load static %}
 
 {% block content %}
 <!DOCTYPE html>
@@ -10,20 +10,49 @@
     <title>Document</title>
 </head>
 <body>
-  <div style="position: absolute; right: 10px; top:60px;margin-top:2%">
-    <a href="{% url 'addAccount' %}" class="btn btn-primary"> Add Account </a>
-</div>
-  {% for account in accounts %}
+   {% for account in accounts %}
     {% if account.type == "Kennedy Rice Mill" %}
-      <div class="card text-center" style="margin:10% 10% 0% 10%">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{account.name}}</h5>
-          <a href="{% url 'account_info' account.id %}" class="btn btn-primary" >{{account.name}}</a>
-        </div>
-      </div>
+
+ 
+
+      <div class="container square-box d-flex justify-content-center align-items-center" style="padding: 2% 10%;">
+                <div class="card" style="width: 27rem;">
+                  
+                        {% if account.thumbnail %}
+                      
+                                <a href="">
+                                    <img
+                                    class="card-img-top"
+                                    src="{% static 'images/img.jpeg' %}"
+                                    alt="Card image cap"
+                                    style="height: 30rem;border:1px solid black;"
+                                    />
+                                    {% else %} 
+                                  <img
+                                    src="{% static 'images/img.jpeg' %}"
+                                    class="card-img-top"
+                                    alt="Card image cap"
+                                  
+                                    /> 
+                                </a>
+        
+                                    {% endif %}
+                      
+                    <div class="card-body d-flex justify-content-center">
+                        <a href="{% url 'account_info' account.id %}" class="btn btn-primary" style="text-align:center">{{account.name}}</a>
+                    </div>
+                </div>
+
+        </div>   
+
+    </div> 
+
+
+
+   
+      
   {% endif %}
-{% endfor %}
+{% endfor %} 
 </body>
 {% endblock %}
 </html>
