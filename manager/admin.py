@@ -27,6 +27,6 @@ class UpdateHistoryAdmin(admin.ModelAdmin):
     list_filter = ('updated_on',)
 
 # Register your models here.
-admin.site.register(User, UserAdminConfig)
+admin.site.register(User,UserAdminConfig)
 admin.site.register(Account)
 admin.site.register(UpdateHistory,UpdateHistoryAdmin)

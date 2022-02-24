@@ -1,8 +1,13 @@
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required(login_url='login')
 def frontpage(request):
 
     
@@ -11,7 +16,9 @@ def frontpage(request):
             'accounts' : accounts,
         }
         return render(request,'manager/frontpage.html',context)
-    
+
+
+@login_required(login_url='login')  
 def kennedypage(request):
     accounts = Account.objects.all()
     context = {
@@ -19,6 +26,7 @@ def kennedypage(request):
     }
     return render(request,'manager/kennedy_account.html',context)
 
+@login_required(login_url='login')
 def neighborspage(request):
     accounts = Account.objects.all()
     context = {
@@ -26,7 +34,7 @@ def neighborspage(request):
     }
     return render(request,'manager/neignbors_account.html',context)
 
-
+@login_required(login_url='login')
 def account_info(request, key):
     
         account = Account.objects.get(id=key)
@@ -37,7 +45,7 @@ def account_info(request, key):
 
         return render(request, 'manager/account_info.html',context)
     
-
+@login_required(login_url='login')
 def addAccount(request):
 
     form = AccountForm()
@@ -56,6 +64,7 @@ def addAccount(request):
     }
     return render(request, 'manager/addAccount.html', context)
 
+@login_required(login_url='login')
 def UpdateAccount(request, key):
     
     account = Account.objects.get(id=key)
@@ -81,6 +90,7 @@ def UpdateAccount(request, key):
 
     return render(request,'manager/update_page.html',context)
 
+@login_required(login_url='login')
 def DeleteAccount(request, key):
 
     account = Account.objects.get(id=key)
@@ -93,3 +103,24 @@ def DeleteAccount(request, key):
     }
 
     return render(request,'manager/delete_page.html', context)
+
+# login user
+def loginPage(request):
+    if  request.user.is_superuser:
+        return redirect('frontpage')
+    else:
+        if request.method == 'POST':
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            user = authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('frontpage')
+        else:
+            messages.info(request, 'Username OR password is incorrect')
+        context = {}
+        return render(request, 'manager/loginpage.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')

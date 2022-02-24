@@ -8,5 +8,6 @@ urlpatterns = [
     path('delete_page/<str:key>', views.DeleteAccount, name='deleteAccount'),
     path('kennedy_account/', views.kennedypage, name='kennedypage'),
     path('neighbor_account/', views.neighborspage, name='neighborspage'),
-    
+    path('login/',views.loginPage,name='login'),
+    path('logout/',views.logoutUser,name='logout')
 ]
