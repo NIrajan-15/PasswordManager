@@ -54,7 +54,7 @@ class Account(models.Model):
     last_changed = models.DateTimeField(auto_now=True)
     type = models.CharField(max_length=20, null=True, choices=Account_choices)
     description = models.CharField(max_length=500, null=True)
-    thumbnail = models.ImageField(null=True,blank=True,upload_to='static/images/')
+    thumbnail = models.ImageField(null=True,blank=True,upload_to='images/')
     def __str__(self):
         return self.name
 
