@@ -10,8 +10,8 @@
     </head>
     
     <body>
-    <h1 style="margin-left:25%"> Add-Account Form</h1>
-    <div class="center-column" style="margin:5%">
+    <h1 style="text-align: center; margin: 1em 0em;"> Add-Account Form</h1>
+    <div class="center-column" style="margin: auto; border-style: groove; padding: 1em 3em; border-width: 0.5em; width: 20em;">
         <form method="POST" action=''>
             {% csrf_token %}
             {{form|crispy}}

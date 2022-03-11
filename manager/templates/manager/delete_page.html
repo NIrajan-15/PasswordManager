@@ -1,11 +1,15 @@
-<h1> This is Delete Page </h1>
+{% extends 'manager/base.html' %} {% load static %}
 
-<p> Are you sure you want to delete?{{account.name}} </p>
+{% block content %}
 
-<form action="{% url 'deleteAccount' account.id  %}" method="POST">
+<p style="font-size: 2em; margin-left: 2%;"> Are you sure you want to delete?</p>
+<div style="border: solid 0.2em; width: fit-content; padding: 2% 6%; margin: 1% 2% 2% 2%; font-size: larger;">{{account.name}}</div>
+
+<form action="{% url 'deleteAccount' account.id  %}" method="POST" >
 				
     {% csrf_token %}
-    <a class="btn btn-warning cancel-button" href="{% url 'account_info' account.id%}">Cancel</a>
+    <a class="btn btn-warning " href="{% url 'account_info' account.id%}" style="margin-left: 2%; margin-right: 1%;">Cancel</a>
 
-    <input class="btn btn-danger" type="submit" name="Confirm">
+    <input class="btn btn-danger" type="submit" name="Confirm" >
 </form>
+{% endblock %}

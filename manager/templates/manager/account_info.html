@@ -10,8 +10,6 @@
       <span><a href="{% url 'deleteAccount' account.id %}" style="position: absolute; right: 5px; top: 65px;" ><button type="button" class="btn btn-danger"> Delete </button> </a> </span>
    
 <br>
-<br>
-<br>
 
 {{account.thumbnail}}<br>
 
@@ -33,14 +31,14 @@
       }
 </script>
 
- <div class="container square-box d-flex justify-content-center align-items-center" style="max-width:500px; min-height: 600px; border: 1px solid black; padding:10px;">
+<div style="text-align: center; margin-bottom: 0.5em; font-size: 4em;">{{account.name}}</div>
+ <div class="container square-box d-flex justify-content-center align-items-center" style="max-width:500px; min-height: 500px; border: 1px solid black; padding:10px;">
 <div class="card" style="width: 30rem;">
-  <img class="card-img-top" src="{% static 'images/img.jpeg' %}" alt="Card image cap">
+  <img class="card-img-top" src="{% static 'images/img.jpeg' %}" alt="Card image cap" style="height: 24em;">
   <div class="card-body">
     <h5 class="card-title">Kennedy Rice Mill</h5>
   </div>
   <ul class="list-group list-group-flush">
-   <li class="list-group-item"><span>Account Name: </span>{{account.name}}</li>
     <li class="list-group-item" ><span>Username: </span><span id="username">{{account.username}}</span><span style="position: absolute; right: 5px; top: 5px;"><button id="copy-username" onclick="CopyToClipboard('username')" type="button" class="btn btn-warning">Copy</button></span></li>
     <li class="list-group-item" id="password"><span>Password: </span><span id="password">{{account.password}}</span><span style="position: absolute; right: 5px; top: 5px;"><button id="copy-username" onclick="CopyToClipboard('password')" type="button" class="btn btn-warning">Copy</button></span></li>
     <li class="list-group-item"><span>last Modified: </span>{{account.last_changed}}</li>

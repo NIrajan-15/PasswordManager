@@ -1,3 +1,4 @@
+{% extends 'manager/base.html' %} {% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
@@ -9,14 +10,17 @@
     </head>
     
     <body>
-    <h1 style="margin-left:22%"> Update-Account Form</h1>
-    <div class="center-column" style="margin-left:5%">
-        <form method="POST" action=''>
-            {% csrf_token %}
-            {{form|crispy}}
-            <input class="btn1" type="submit" value="Save">
-        </form>
+    <h1 style="text-align: center"> Update-Account Form</h1>
+    <div class = "center-column">
+        <div class="center-column" style=" margin: auto; border-style: solid; border-width: 0.2em; width: 18em; padding: 2% 2%;">
+            <form method="POST" action=''>
+                {% csrf_token %}
+                {{form|crispy}}
+                <input class="btn1" type="submit" value="Save">
+            </form>
+        </div>
     </div>
+    
     </body>
 </html>
 
