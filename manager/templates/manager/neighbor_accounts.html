@@ -11,34 +11,13 @@
 </head>
 <body>
    {% for account in accounts %}
-    {% if account.type == "Neighbor Cookies" %}
+    {% if account.bussiness == "Neighbor Cookies" %}
 
  
 
       <div class="container square-box d-flex justify-content-center align-items-center" style="padding: 2% 10%;">
                 <div class="card" style="width: 27rem;">
-                  
-                        {% if account.thumbnail %}
-                      
-                                <a href="">
-                                    <img
-                                    class="card-img-top"
-                                    src="{% static 'images/img.jpeg' %}"
-                                    alt="Card image cap"
-                                    style="height: 30rem;border:1px solid black;"
-                                    />
-                                    {% else %} 
-                                  <img
-                                    src="{% static 'images/img.jpeg' %}"
-                                    class="card-img-top"
-                                    alt="Card image cap"
-                                  
-                                    /> 
-                                </a>
-        
-                                    {% endif %}
-                      
-                    <div class="card-body d-flex justify-content-center">
+                      <div class="card-body d-flex justify-content-center">
                         <a href="{% url 'account_info' account.id %}" class="btn btn-primary" style="text-align:center">{{account.name}}</a>
                     </div>
                 </div>
