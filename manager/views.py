@@ -108,7 +108,7 @@ def UpdateAccount(request, key):
             if form.has_changed():
                 for i in form.changed_data:
                     UpdateHistory.objects.create(
-                        email=request.user.email, updated_column=i)
+                        email=request.user.email, updated_column=i, updated_to=request.POST.get(i))
             return redirect('/')
     context={
         'form' : form,

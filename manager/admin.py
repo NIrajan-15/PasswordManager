@@ -23,7 +23,7 @@ class UserAdminConfig(UserAdmin):
 
 
 class UpdateHistoryAdmin(admin.ModelAdmin):
-    list_display=('email','updated_column','updated_on')
+    list_display=('email','updated_column','updated_on','updated_to')
     list_filter = ('updated_on',)
 
 # Register your models here.
