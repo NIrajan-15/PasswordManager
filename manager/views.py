@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .filters import *
+from .admin import *
 
 # Create your views here.
 
@@ -21,6 +22,23 @@ def frontpage(request):
 
     return render(request,'manager/frontpage.html',context)
 
+@login_required(login_url='login')
+def search(request):
+
+    accounts = Account.objects.all()
+
+    form = SearchForm()
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        context={
+            'accounts' : accounts,
+            'form' : form,
+            'name' : name
+        }
+
+        return render(request,'manager/frontpage.html',context)
 
 @login_required(login_url='login')  
 def kennedypage(request):

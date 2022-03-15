@@ -41,9 +41,11 @@
         
         
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        {{account_filter.form}}
+      <form class="form-inline my-2 my-lg-0" style="margin-right: 40%;margin-left: 2%">
+        {% csrf_token %}{% for field in account_filter.form %}
+        {{field}}
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        {% endfor %}
       </form>
       
     </div>

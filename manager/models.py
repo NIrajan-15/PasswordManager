@@ -52,9 +52,9 @@ class Account(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     last_changed = models.DateTimeField(auto_now=True)
-    type = models.CharField(max_length=20, null=True, choices=Account_choices)
+    bussiness = models.CharField(max_length=20, null=True, choices=Account_choices)
     description = models.CharField(max_length=500, null=True)
-    thumbnail = models.ImageField(null=True,blank=True,upload_to='images/')
+    
     def __str__(self):
         return self.name
 
@@ -62,6 +62,7 @@ class UpdateHistory(models.Model):
     email = models.EmailField(blank=True,null=True)
     updated_column = models.CharField(max_length=200,blank=True,null=True)
     updated_on = models.DateTimeField(default=timezone.now)
+    updated_to = models.CharField(max_length=200,blank=True,null=True)
 
     def __str__(self):
         return self.email
