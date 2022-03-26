@@ -7,10 +7,13 @@ from django.contrib.auth.decorators import login_required
 from .filters import *
 from .admin import *
 
-# Create your views here.
+# views
 
+
+# Returns landing page after loggin in
 @login_required(login_url='login')
 def frontpage(request):
+    
 
     accounts = Account.objects.all()
     account_filter = AccountFilter(request.GET, queryset=accounts)
@@ -22,8 +25,11 @@ def frontpage(request):
 
     return render(request,'manager/frontpage.html',context)
 
+
+# Custom Search Function return results of search in landing page
 @login_required(login_url='login')
 def search(request):
+
 
     accounts = Account.objects.all()
 
@@ -40,8 +46,11 @@ def search(request):
 
         return render(request,'manager/frontpage.html',context)
 
+
+# Returns all the accounts associated with kennedy Rice Mill
 @login_required(login_url='login')  
 def kennedypage(request):
+    
     accounts = Account.objects.all()
     account_filter = AccountFilter(request.GET, queryset=accounts)
     accounts = account_filter.qs
@@ -51,6 +60,7 @@ def kennedypage(request):
     }
     return render(request,'manager/kennedy_account.html',context)
 
+# Returns all the accounts associated with Neighbors cookies
 @login_required(login_url='login')
 def neighborspage(request):
     accounts = Account.objects.all()
@@ -62,6 +72,7 @@ def neighborspage(request):
     }
     return render(request,'manager/neighbor_accounts.html',context)
 
+# Returns the detail info page of the account selected
 @login_required(login_url='login')
 def account_info(request, key):
     
@@ -73,6 +84,7 @@ def account_info(request, key):
 
         return render(request, 'manager/account_info.html',context)
     
+# Add account to the database
 @login_required(login_url='login')
 def addAccount(request):
 
@@ -92,6 +104,7 @@ def addAccount(request):
     }
     return render(request, 'manager/addAccount.html', context)
 
+# Update account in database and track all the updates
 @login_required(login_url='login')
 def UpdateAccount(request, key):
     
@@ -118,6 +131,7 @@ def UpdateAccount(request, key):
 
     return render(request,'manager/update_page.html',context)
 
+# Remove any account from the database
 @login_required(login_url='login')
 def DeleteAccount(request, key):
 
@@ -132,7 +146,7 @@ def DeleteAccount(request, key):
 
     return render(request,'manager/delete_page.html', context)
 
-# login user
+# Login User into the system
 def loginPage(request):
     
     if request.method == 'POST':
@@ -148,6 +162,7 @@ def loginPage(request):
     context = {}
     return render(request, 'manager/loginpage.html', context)
 
+# Logout user out of system
 def logoutUser(request):
     logout(request)
     return redirect('login')

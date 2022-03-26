@@ -5,7 +5,7 @@ from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager ,PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 
-# custom usermodel
+# A custom Usermodel to represent User Manager
 class UserManager(BaseUserManager):
     use_in_migrations = True
     def create_user(self,email,password, **extra_fields):
@@ -33,6 +33,7 @@ class UserManager(BaseUserManager):
 
 
 
+# A class representing User
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     
@@ -45,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
 
 
-# Create your models here.
+# A class representing Accounts 
 class Account(models.Model):
     Account_choices = (('Kennedy Rice Mill','Kennedy Rice Mill'),('Neighbor Cookies','Neighbor Cookies'),)
     name = models.CharField(max_length=50)
@@ -58,6 +59,7 @@ class Account(models.Model):
     def __str__(self):
         return self.name
 
+# Class representing Update Hisotry 
 class UpdateHistory(models.Model):
     email = models.EmailField(blank=True,null=True)
     updated_column = models.CharField(max_length=200,blank=True,null=True)

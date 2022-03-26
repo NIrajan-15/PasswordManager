@@ -3,7 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 from .models import *
 from .forms import *
 
-# Register your models here.
+# A class for User configuration in admin panel
+# Fields required to add admin
 class UserAdminConfig(UserAdmin):
     search_fields = ('email',)
     ordering = ('-start_date',)
@@ -21,12 +22,13 @@ class UserAdminConfig(UserAdmin):
     )
 
 
-
+# A class for any Updates on account's information
+# the list_display represents all the fileds on admin panel
 class UpdateHistoryAdmin(admin.ModelAdmin):
     list_display=('email','updated_column','updated_on','updated_to')
     list_filter = ('updated_on',)
 
-# Register your models here.
+# Registering models on Admin Panel so that they can be modeified via admin panel too
 admin.site.register(User,UserAdminConfig)
 admin.site.register(Account)
 admin.site.register(UpdateHistory,UpdateHistoryAdmin)
