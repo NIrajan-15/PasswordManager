@@ -32,3 +32,7 @@ class UpdateHistoryAdmin(admin.ModelAdmin):
 admin.site.register(User,UserAdminConfig)
 admin.site.register(Account)
 admin.site.register(UpdateHistory,UpdateHistoryAdmin)
+
+admin.site.site_header = "Password Manager"
+admin.site.site_title = "Password Manager Admin Portal"
+admin.site.index_title = "Welcome to Password Manager Admin Portal"
